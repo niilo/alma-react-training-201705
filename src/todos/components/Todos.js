@@ -5,7 +5,7 @@ import InputBar from '../../components/InputBar.js'
 import Todo from './Todo.js'
 import * as api from '../api'
 import uuid from 'node-uuid'
-import { setTodos, addTodo, toggleTodo } from '../actions'
+import { setTodos, addTodo, toggleTodo, removeTodo } from '../actions'
 import { getTodos } from '../selectors'
 
 class Todos extends Component {
@@ -20,7 +20,9 @@ class Todos extends Component {
     this.props.addTodo(newTodo)
   }
 
-  removeTodo = id => api.deleteTodo(id).then(this.fetchTodos)
+  removeTodo = id => {
+    this.props.removeTodo(id)
+  }
 
   toggleTodo = id => {
     this.props.toggleTodo(id)
@@ -55,7 +57,8 @@ const mapDispatchToProps = dispatch =>
     {
       setTodos,
       addTodo,
-      toggleTodo
+      toggleTodo,
+      removeTodo
     },
     dispatch
   )

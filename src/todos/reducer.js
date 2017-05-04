@@ -1,4 +1,4 @@
-import { SET_TODOS, ADD_TODO, TOGGLE_TODO } from './actionTypes'
+import { SET_TODOS, ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from './actionTypes'
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -21,6 +21,12 @@ export default (state = {}, action) => {
       const todo = state[id]
       todo.done = !todo.done
       return { ...state, [id]: todo }
+    }
+    case REMOVE_TODO: {
+      const id = action.payload
+      const todos = state
+      delete todos[id]
+      return { ...todos }
     }
 
     default:
