@@ -17,11 +17,9 @@ class InputBar extends Component {
   handleKeyPress = e => {
     if (e.charCode === 13) {
       const value = this.state.value;
-
       this.setState({
         value: ''
       });
-      
       this.props.onSubmit(value);
     }
   }
