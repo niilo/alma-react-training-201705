@@ -25,7 +25,7 @@ const fakeDatabase: Db = {
 
 const delay = ms => {
   return new Promise((resolve, reject) => setTimeout(() => {
-    if (Math.random() > 1.0) {
+    if (Math.random() > 0.98) {
       reject('Boom!');
     } else {
       resolve();
