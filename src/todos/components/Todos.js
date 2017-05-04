@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import InputBar from '../../components/InputBar.js'
 import Todo from './Todo.js'
 import * as api from '../api'
+import setTodos from '../actions'
 
 class Todos extends Component {
   constructor (props) {
@@ -15,7 +18,7 @@ class Todos extends Component {
     this.fetchTodos()
   }
 
-  fetchTodos = () => api.getTodos().then(todos => this.setState({ todos }))
+  fetchTodos = () => api.getTodos().then(todos => this.props.setTodos(todos))
 
   addTodo = name => api.addTodo({ name, done: false }).then(this.fetchTodos)
 
@@ -42,4 +45,14 @@ class Todos extends Component {
   }
 }
 
-export default Todos
+const mapStateToProps = stete => ({})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setTodos
+    },
+    dispatch
+  )
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos)
