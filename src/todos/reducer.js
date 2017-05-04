@@ -18,15 +18,17 @@ export default (state = {}, action) => {
     }
     case TOGGLE_TODO: {
       const id = action.payload
-      const todo = state[id]
+      /* const todo = state[id]
       todo.done = !todo.done
-      return { ...state, [id]: todo }
+      return { ...state, [id]: todo } */
+      return { ...state, [id]: { ...state[id], done: !state[id].done } }
     }
     case REMOVE_TODO: {
       const id = action.payload
-      const todos = state
-      delete todos[id]
-      return { ...todos }
+      /* const todos = state
+      delete todos[id] */
+      const { [id]: removedTodo, ...rest } = state
+      return rest
     }
 
     default:
