@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import InputBar from '../../components/InputBar.js'
 import Todo from './Todo.js'
-import * as api from '../api'
 import uuid from 'node-uuid'
-import { setTodos, addTodo, toggleTodo, removeTodo } from '../actions'
+import { fetchTodos, addTodo, toggleTodo, removeTodo } from '../actions'
 import { getTodos } from '../selectors'
 
 class Todos extends Component {
@@ -13,7 +12,7 @@ class Todos extends Component {
     this.fetchTodos()
   }
 
-  fetchTodos = () => api.getTodos().then(todos => this.props.setTodos(todos))
+  fetchTodos = () => this.props.fetchTodos()
 
   addTodo = name => {
     const newTodo = { id: uuid.v4(), name, done: false }
@@ -55,7 +54,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setTodos,
+      fetchTodos,
       addTodo,
       toggleTodo,
       removeTodo

@@ -1,4 +1,10 @@
-import { SET_TODOS, ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from './actionTypes'
+import {
+  SET_TODOS,
+  ADD_TODO,
+  TOGGLE_TODO,
+  REMOVE_TODO,
+  FETCH_TODOS
+} from './actionTypes'
 
 export const setTodos = todos => ({
   type: SET_TODOS,
@@ -18,4 +24,8 @@ export const toggleTodo = id => ({
 export const removeTodo = id => ({
   type: REMOVE_TODO,
   payload: id
+})
+
+export const fetchTodos = () => ({
+  type: FETCH_TODOS
 })
