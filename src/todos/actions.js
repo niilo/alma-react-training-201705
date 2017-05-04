@@ -1,6 +1,7 @@
 import {
   SET_TODOS,
-  ADD_TODO,
+  ADD_TODO_START,
+  ADD_TODO_SUCCESS,
   TOGGLE_TODO,
   REMOVE_TODO,
   FETCH_TODOS
@@ -11,8 +12,13 @@ export const setTodos = todos => ({
   payload: todos
 })
 
+export const startAddTodo = todo => ({
+  type: ADD_TODO_START,
+  payload: todo
+})
+
 export const addTodo = todo => ({
-  type: ADD_TODO,
+  type: ADD_TODO_SUCCESS,
   payload: todo
 })
 

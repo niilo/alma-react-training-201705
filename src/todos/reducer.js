@@ -1,4 +1,9 @@
-import { SET_TODOS, ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from './actionTypes'
+import {
+  SET_TODOS,
+  ADD_TODO_SUCCESS,
+  TOGGLE_TODO,
+  REMOVE_TODO
+} from './actionTypes'
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -12,7 +17,7 @@ export default (state = {}, action) => {
         {}
       )
     }
-    case ADD_TODO: {
+    case ADD_TODO_SUCCESS: {
       const todo = action.payload
       return { ...state, [todo.id]: todo }
     }

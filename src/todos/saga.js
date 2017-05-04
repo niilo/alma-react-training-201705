@@ -1,8 +1,8 @@
-import { call, takeEvery, put } from 'redux-saga/effects'
+import { call, takeEvery, takeLatest, put } from 'redux-saga/effects'
 
-import { setTodos } from './actions'
-import { FETCH_TODOS } from './actionTypes'
-import { getTodos } from './api'
+import { setTodos, addTodo } from './actions'
+import { FETCH_TODOS, ADD_TODO_START } from './actionTypes'
+import { getTodos, addTodo as insertTodo } from './api'
 
 export function * todoWorkerSaga (apiMethod, successActionCreator, action) {
   try {
@@ -15,5 +15,8 @@ export function * todoWorkerSaga (apiMethod, successActionCreator, action) {
 }
 
 export function * todoWatcherSaga () {
-  yield [takeEvery(FETCH_TODOS, todoWorkerSaga, getTodos, setTodos)]
+  yield [
+    takeEvery(FETCH_TODOS, todoWorkerSaga, getTodos, setTodos),
+    takeLatest(ADD_TODO_START, todoWorkerSaga, insertTodo, addTodo)
+  ]
 }
