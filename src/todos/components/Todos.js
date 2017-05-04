@@ -7,7 +7,7 @@ import uuid from 'node-uuid'
 import { fetchTodos, startAddTodo, toggleTodo, removeTodo } from '../actions'
 import { getTodos } from '../selectors'
 
-class Todos extends Component {
+export class Todos extends Component {
   componentDidMount () {
     this.fetchTodos()
   }
