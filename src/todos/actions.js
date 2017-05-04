@@ -1,4 +1,4 @@
-import { SET_TODOS, ADD_TODO } from './actionTypes'
+import { SET_TODOS, ADD_TODO, TOGGLE_TODO } from './actionTypes'
 
 export const setTodos = todos => ({
   type: SET_TODOS,
@@ -8,4 +8,9 @@ export const setTodos = todos => ({
 export const addTodo = todo => ({
   type: ADD_TODO,
   payload: todo
+})
+
+export const toggleTodo = id => ({
+  type: TOGGLE_TODO,
+  payload: id
 })
