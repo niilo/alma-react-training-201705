@@ -1,4 +1,4 @@
-import { SET_TODOS } from './actionTypes'
+import { SET_TODOS, ADD_TODO } from './actionTypes'
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -11,6 +11,10 @@ export default (state = {}, action) => {
         }),
         {}
       )
+    }
+    case ADD_TODO: {
+      const todo = action.payload
+      return { ...state, [todo.id]: todo }
     }
 
     default:

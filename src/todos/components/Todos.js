@@ -4,23 +4,21 @@ import { bindActionCreators } from 'redux'
 import InputBar from '../../components/InputBar.js'
 import Todo from './Todo.js'
 import * as api from '../api'
-import setTodos from '../actions'
+import uuid from 'node-uuid'
+import { setTodos, addTodo } from '../actions'
+import { getTodos } from '../selectors'
 
 class Todos extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      todos: []
-    }
-  }
-
   componentDidMount () {
     this.fetchTodos()
   }
 
   fetchTodos = () => api.getTodos().then(todos => this.props.setTodos(todos))
 
-  addTodo = name => api.addTodo({ name, done: false }).then(this.fetchTodos)
+  addTodo = name => {
+    const newTodo = { id: uuid.v4(), name, done: false }
+    this.props.addTodo(newTodo)
+  }
 
   removeTodo = id => api.deleteTodo(id).then(this.fetchTodos)
 
@@ -31,7 +29,7 @@ class Todos extends Component {
       <div className='form-group'>
         <InputBar onSubmit={this.addTodo} />
         <ul className='list-group'>
-          {this.state.todos.map(todo => (
+          {this.props.todos.map(todo => (
             <Todo
               key={todo.id}
               todo={todo}
@@ -45,12 +43,16 @@ class Todos extends Component {
   }
 }
 
-const mapStateToProps = stete => ({})
+// use reselect if getTodos is expensive
+const mapStateToProps = state => ({
+  todos: getTodos(state)
+})
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setTodos
+      setTodos,
+      addTodo
     },
     dispatch
   )
