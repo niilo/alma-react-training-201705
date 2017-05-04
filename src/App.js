@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import Welcome from './Welcome';
-import Todos from './todos/Todos';
-import Header from './components/Header';
+import Welcome from './Welcome'
+import Todos from './todos/components/Todos'
+import Header from './components/Header'
 
 export default () => (
   <Router>
@@ -13,4 +13,4 @@ export default () => (
       <Route path='/todos' component={Todos} />
     </div>
   </Router>
-);
+)
